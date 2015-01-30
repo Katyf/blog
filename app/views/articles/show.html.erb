@@ -6,13 +6,66 @@
 <p>
   <strong>Text:</strong>
   <%= @article.text %>
+
+  <h2>Links</h2>
+<% @article.links.each do |link| %>
+  <p>
+    <strong>Link:</strong>
+    <%= link.href %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+<% end %>
 </p>
 
+
+<h2>Add a link:</h2>
+<%= form_for([@article, @article.links.build]) do |f| %>
+  <p>
+    <%= f.label :href %><br>
+    <%= f.text_field :href %>
+  </p>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_area :title %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
 <h2>Comments</h2>
-<%= render @article.comments %>
+<% @article.comments.each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+<% end %>
+
 
 <h2>Add a comment:</h2>
-<%= render 'comments/form' %>
+<%= form_for([@article, @article.comments.build]) do |f| %>
+  <p>
+    <%= f.label :commenter %><br>
+    <%= f.text_field :commenter %>
+  </p>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit Article', edit_article_path(@article) %> |
 <%= link_to 'Back to Articles', articles_path %>
+

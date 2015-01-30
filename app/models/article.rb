@@ -3,4 +3,5 @@ class Article < ActiveRecord::Base
   validates :title, presence: true,
                     length: { minimum: 5 }
   belongs_to :category
+  has_many :links, dependent: :destroy
 end
