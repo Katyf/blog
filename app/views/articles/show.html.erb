@@ -11,16 +11,11 @@
   <strong>Text:</strong>
   <%= @article.text %>
 
-  <h2>Links</h2>
+  <h2>Suggested Links</h2>
 <% @article.links.each do |link| %>
   <p>
     <strong>Link:</strong>
-    <%= link.href %>
-  </p>
-
-  <p>
-    <strong>Link:</strong>
-    <%= link.title %>
+    <%= link_to link.title, link.href %>
   </p>
 <% end %>
 </p>
